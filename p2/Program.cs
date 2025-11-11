@@ -48,47 +48,29 @@ namespace PalindromeChecker
 
         static void Main(string[] args)
         {
-            Console.WriteLine(new string('=', 70));
-            Console.WriteLine("PALINDROME CHECKER - EFFICIENT ALGORITHM ANALYSIS");
-            Console.WriteLine(new string('=', 70));
+            Console.Write("\nWelcome to the Palindrome Checker for Cadena tech test");
+            Console.Write("\nEnter a string to check if it's a palindrome: ");
+            string input = Console.ReadLine();
 
-            // Test 1: Example from problem
-            Console.WriteLine("\nTEST 1: Example case");
-            string test1 = "A man a plan a canal Panama";
-            Console.WriteLine($"Input: \"{test1}\"");
-            Console.WriteLine($"Output: {IsPalindrome(test1)}");
-            Console.WriteLine($"Algorithm: Two-Pointer (O(n) time, O(1) space)");
-
-            // Test 2: Simple palindrome
-            Console.WriteLine("\nTEST 2: Simple palindrome");
-            string test2 = "racecar";
-            Console.WriteLine($"Input: \"{test2}\"");
-            Console.WriteLine($"Output: {IsPalindrome(test2)}");
-
-            // Test 3: Not a palindrome
-            Console.WriteLine("\nTEST 3: Not a palindrome");
-            string test3 = "hello world";
-            Console.WriteLine($"Input: \"{test3}\"");
-            Console.WriteLine($"Output: {IsPalindrome(test3)}");
-
-            // Test 4: With punctuation
-            Console.WriteLine("\nTEST 4: Complex with punctuation");
-            string test4 = "Was it a car or a cat I saw?";
-            Console.WriteLine($"Input: \"{test4}\"");
-            Console.WriteLine($"Output: {IsPalindrome(test4)}");
-
-
-            // Test 5: Edge cases
-            Console.WriteLine("\nTEST 8: Edge cases");
-            Console.WriteLine($"Empty string: {IsPalindrome("")}");
-            Console.WriteLine($"Single char: {IsPalindrome("a")}");
-            Console.WriteLine($"Only spaces: {IsPalindrome("   ")}");
-            Console.WriteLine($"Only punctuation: {IsPalindrome("!!!???")}");
-
-
-
-            Console.WriteLine("ANALYSIS COMPLETE");
-
+            try
+            {
+                bool result = IsPalindrome(input);
+                Console.WriteLine($"\nInput: \"{input}\"");
+                Console.WriteLine($"Output: {result}");
+                
+                if (result)
+                {
+                    Console.WriteLine("✓ The string IS a palindrome!");
+                }
+                else
+                {
+                    Console.WriteLine("✗ The string is NOT a palindrome.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError: {ex.Message}");
+            }
 
             Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
