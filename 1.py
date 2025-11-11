@@ -2,16 +2,6 @@ import time
 from typing import List
 
 def is_prime_linear(n: int) -> bool:
-    """
-    Check if a number is prime using linear search algorithm.
-    Time complexity: O(sqrt(n))
-    
-    Args:
-        n: Integer to check
-        
-    Returns:
-        bool: True if n is prime, False otherwise
-    """
     if n < 2:
         return False
     if n == 2:
@@ -29,17 +19,7 @@ def is_prime_linear(n: int) -> bool:
 
 
 def sieve_of_eratosthenes(max_num: int) -> set:
-    """
-    Generate all prime numbers up to max_num using Sieve of Eratosthenes.
-    Time complexity: O(n log log n)
-    Space complexity: O(n)
-    
-    Args:
-        max_num: Maximum number to check
-        
-    Returns:
-        set: Set of all prime numbers up to max_num
-    """
+
     if max_num < 2:
         return set()
     
@@ -60,24 +40,7 @@ def sieve_of_eratosthenes(max_num: int) -> set:
 
 
 def sum_of_primes(numbers: List[int]) -> tuple:
-    """
-    Calculate the sum of all prime numbers in a list using optimal algorithm.
     
-    Algorithm selection criteria:
-    - Linear search: For lists < 10,000 elements AND max number < 100,000 (5 digits)
-    - Sieve of Eratosthenes: For larger lists or numbers with 5+ digits
-    - Segmented Sieve: Recommended for lists with 1M+ elements (not implemented here)
-    
-    Args:
-        numbers: List of integers
-        
-    Returns:
-        tuple: (sum of primes, algorithm used, execution time)
-        
-    Raises:
-        TypeError: If input is not a list or contains non-integer values
-        ValueError: If list is empty
-    """
     # Error handling
     if not isinstance(numbers, list):
         raise TypeError("Input must be a list")
@@ -144,7 +107,7 @@ if __name__ == "__main__":
     print("=" * 70)
     
     # Test 1: Small list (Linear Search expected)
-    print("\n📊 TEST 1: Small list (< 10,000 elements, < 5 digits)")
+    print("\n TEST 1: Small list (< 10,000 elements, < 5 digits)")
     test_list_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     result, algorithm, exec_time = sum_of_primes(test_list_1)
     print(f"Input: {test_list_1}")
@@ -153,7 +116,7 @@ if __name__ == "__main__":
     print(f"Execution time: {exec_time:.4f} ms")
     
     # Test 2: Medium list with large numbers (Sieve expected)
-    print("\n📊 TEST 2: List with 5+ digit numbers (Sieve of Eratosthenes expected)")
+    print("\n TEST 2: List with 5+ digit numbers (Sieve of Eratosthenes expected)")
     test_list_2 = [99991, 100003, 100019, 100043, 50000, 60000]
     result, algorithm, exec_time = sum_of_primes(test_list_2)
     print(f"Input size: {len(test_list_2)} elements")
@@ -163,7 +126,7 @@ if __name__ == "__main__":
     print(f"Execution time: {exec_time:.4f} ms")
     
     # Test 3: Large list (Sieve expected)
-    print("\n📊 TEST 3: Large list (> 10,000 elements)")
+    print("\n TEST 3: Large list (> 10,000 elements)")
     test_list_3 = list(range(1, 15001))
     result, algorithm, exec_time = sum_of_primes(test_list_3)
     print(f"Input size: {len(test_list_3):,} elements")
@@ -171,9 +134,9 @@ if __name__ == "__main__":
     print(f"Sum of primes: {result:,}")
     print(f"Algorithm used: {algorithm}")
     print(f"Execution time: {exec_time:.4f} ms")
-        
+
     # Test 4: Demonstrate segmented sieve recommendation
-    print("\n📊 TEST 4: Very large list (1M+ elements - Segmented Sieve recommended)")
+    print("\n TEST 4: Very large list (1M+ elements - Segmented Sieve recommended)")
     test_list_4 = list(range(1, 1000001))
     result, algorithm, exec_time = sum_of_primes(test_list_4)
     print(f"Input size: {len(test_list_4):,} elements")
@@ -183,7 +146,7 @@ if __name__ == "__main__":
     print(f"Execution time: {exec_time:.4f} ms")
     
     # Error handling demonstration
-    print("\n📊 TEST 5: Error handling")
+    print("\n TEST 5: Error handling")
     try:
         sum_of_primes([1, 2, "three", 4])
     except TypeError as e:
@@ -192,3 +155,22 @@ if __name__ == "__main__":
     print("\n" + "=" * 70)
     print("ANALYSIS COMPLETE")
     print("=" * 70)
+
+# /*   _________        _________
+# //  /  _______|      / _______ \
+# //  |  |            | | x   x | |
+# //  |  |            | |  x x  | |
+# //  |  |            | |   +   | |
+# //  |  |            | |   +   | |
+# //  |  |            | |  x x  | |
+# //  |  |_______     | |_x___x_| |
+# //  \__________|     \_________/
+# //   _________        _________
+# //  |    __   \      / _______ \
+# //  |   |  |   |    | | x   x | |
+# //  |   |__|   |    | |  x x  | |
+# //  |   __   __|    | |   +   | |
+# //  |  |  \  \      | |   +   | |
+# //  |  |   \  \     | |  x x  | |
+# //  |  |    \  \    | |_x___x_| |
+# //  |__|     \__\    \_________/
